@@ -1,3 +1,14 @@
+Refactor and improve this CSS for a modern developer portfolio.
+
+Goals:
+- Make spacing consistent (use a design system feel)
+- Improve typography hierarchy (h1, h2, p)
+- Enhance project cards to feel more modern and premium
+- Add subtle animations (hover, fade-in on scroll)
+- Improve navbar to feel glassmorphism style
+- Keep dark theme but make it more "premium tech aesthetic"
+- Ensure full mobile responsiveness
+- Do NOT use frameworks
 /* Reset et base */
 html {
     scroll-behavior: smooth;

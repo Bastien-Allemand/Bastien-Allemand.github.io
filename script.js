@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Smooth Scroll for Navigation Links
-    const navLinks = document.querySelectorAll('.navbar a[href^="#"]');
+    const navLinks = document.querySelectorAll('.navbar a[href^="#"], .sidebar-nav a[href^="#"]');
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
@@ -14,6 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     block: 'start'
                 });
             }
+
+            const sidebarToggleCheckbox = document.getElementById('sidebarToggleCheckbox');
+            if (sidebarToggleCheckbox) {
+                sidebarToggleCheckbox.checked = false;
+            }
         });
     });
 
@@ -21,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section, header, footer');
 
     const highlightNavigation = () => {
-        const scrollPosition = window.scrollY + 100; // Offset for navbar
+        const scrollPosition = window.scrollY + 100;
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -40,27 +45,25 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('scroll', highlightNavigation);
-    highlightNavigation(); // Initial call
+    highlightNavigation();
 
     // 3. Scroll Reveal Animations
-    // Using Intersection Observer for performance
     const revealElements = document.querySelectorAll('section h2, .skills-list li, .project-container, .wip li');
 
-    // Set initial state for styling
     revealElements.forEach(el => {
         el.classList.add('reveal-item');
     });
 
     const revealOptions = {
         threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
+        rootMargin: '0px 0px -50px 0px'
     };
 
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
-                observer.unobserve(entry.target); // Only animate once
+                observer.unobserve(entry.target);
             }
         });
     }, revealOptions);
@@ -72,29 +75,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. Typing Animation for Hero Subtitle
     const heroSubtitle = document.querySelector('.hero p');
     if (heroSubtitle) {
-        const originalText = heroSubtitle.innerHTML;
-        heroSubtitle.innerHTML = '';
+        const textToType = heroSubtitle.textContent.trim();
+        heroSubtitle.textContent = '';
 
         let i = 0;
-        const typingSpeed = 50; // ms per character
-
-        // Strip HTML if any, or just type text Content
-        const textToType = originalText.replace(/<[^>]*>?/gm, ''); // simple strip if needed, though the HTML structure here has `|` chars
+        const typingSpeed = 50;
 
         function typeWriter() {
-            if (i < originalText.length) {
-                // If we encounter HTML tags, we should probably just use textContent and type character by character
-                // Since the original text is "Développeur C++ | ...", we can just type it.
-                heroSubtitle.innerHTML += originalText.charAt(i);
+            if (i < textToType.length) {
+                heroSubtitle.textContent += textToType.charAt(i);
                 i++;
                 setTimeout(typeWriter, typingSpeed);
-            } else {
-                // Optional: add a blinking cursor effect at the end
-                heroSubtitle.innerHTML += '<span class="cursor">_</span>';
             }
         }
 
-        // Start typing effect after a small delay
         setTimeout(typeWriter, 500);
     }
 });

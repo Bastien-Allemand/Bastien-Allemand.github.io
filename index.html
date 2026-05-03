@@ -141,6 +141,88 @@
     transform: translateX(6px);
 }
 
+/* Sidebar styles */
+.sidebar-toggle-checkbox {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 260px;
+    background: #161b22;
+    border-right: 1px solid #30363d;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1200;
+    padding-top: 4.5rem;
+    box-shadow: 8px 0 24px rgba(0, 0, 0, 0.35);
+}
+
+.sidebar-toggle-checkbox:checked ~ .sidebar {
+    transform: translateX(0);
+}
+
+.sidebar-toggle {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: #58a6ff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1300;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+    user-select: none;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin: 0.5rem 0;
+}
+
+.sidebar-nav a {
+    color: #c9d1d9;
+    text-decoration: none;
+    font-size: 1.05rem;
+    padding: 0.9rem 1.5rem;
+    display: block;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-nav a:hover {
+    background: #1c2128;
+    color: #58a6ff;
+}
+
+/* Category arrow styles */
+.category-arrow {
+    font-size: 1rem;
+    color: var(--accent-color);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+details[open] > summary .category-arrow {
+    transform: rotate(180deg);
+}
+
 /* Responsive constraints */
 @media (max-width: 768px) {
     .projects-grid {
@@ -156,22 +238,40 @@
         margin-bottom: 2rem;
     }
 }
+
+@media (max-width: 600px) {
+    .sidebar {
+        width: 78vw;
+    }
+}
     </style>
 </head>
 
 <body>
+    <input type="checkbox" id="sidebarToggleCheckbox" class="sidebar-toggle-checkbox" aria-hidden="true">
+    <!-- Sidebar latérale gauche -->
+    <div id="sidebar" class="sidebar">
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="#a-propos">À propos de moi</a></li>
+                <li><a href="#cv">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+            </ul>
+        </nav>
+    </div>
+    <!-- Sidebar toggle button, toujours visible à gauche, EN DEHORS de la sidebar -->
+    <label id="sidebarToggle" class="sidebar-toggle" for="sidebarToggleCheckbox" aria-label="Ouvrir le sommaire" aria-controls="sidebar">&#9776;</label>
+    <!-- Le reste du contenu (header, main, etc.) -->
     <header>
         <nav class="navbar" aria-label="Navigation principale">
             <ul>
-                <li><a href="#a-propos">À propos de moi</a></li>
-                <li><a href="#cv">CV</a></li>
-                <li><a href="#projets">Projets réalisés</a></li>
+                <!-- Navigation principale volontairement allégée -->
             </ul>
         </nav>
 
         <div class="hero">
             <h1>Bastien Allemand--Leung Pin</h1>
-            <p>Développeur C++ | Étudiant en Programmation Jeu Vidéo | Passionné Systèmes & Moteurs</p>
+            <p>Développeur C++ | Étudiant en programmation jeu vidéo | Passionné par les systèmes et les moteurs</p>
         </div>
     </header>
 
@@ -179,8 +279,8 @@
         <section id="a-propos" aria-labelledby="a-propos-titre">
             <h2 id="a-propos-titre">À propos de moi</h2>
             <p>
-                Je suis étudiant spécialisé en C++, architecture de moteurs et IA.
-                J'aime construire des systèmes bas niveau, des outils performants et des mécaniques de jeu.
+                Étudiant en programmation, je me spécialise en C++, en architecture logicielle et en création de systèmes de jeu.
+                J’aime concevoir des solutions propres, efficaces et orientées vers la compréhension du code bas niveau.
             </p>
         </section>
 
@@ -190,265 +290,79 @@
                 <li>C++ (STL / POO)</li>
                 <li>OpenGL</li>
                 <li>Git / GitHub</li>
-                <li>Développement de jeux (Architecture ECS, Physique)</li>
-                <li>Mathématiques 3D & Intelligence Artificielle</li>
+                <li>Développement de jeux (architecture ECS, physique)</li>
+                <li>Mathématiques 3D et intelligence artificielle</li>
             </ul>
-            <p><a href="content/cv.pdf" target="_blank" rel="noopener noreferrer" class="bouton-cv" aria-label="Télécharger mon CV au format PDF">Télécharger mon CV (PDF)</a></p>
         </section>
 
         <section id="projets" class="portfolio-section dark-theme">
             <div class="container">
-                <h2 class="section-title">Selected Works</h2>
-                
+                <h2 class="section-title">Projets</h2>
                 <div class="projects-grid">
-                    <!-- 1-1-ImperativeProg -->
-                    <a href="projet-1-1-ImperativeProg.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">1-1-ImperativeProg</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
+                    <details class="project-card" style="grid-column: 1 / -1;" open>
+                        <summary class="project-card-content" style="list-style: none;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
+                                <div>
+                                    <h3 class="project-card-title">Projet officiel</h3>
+                                    <p class="project-card-description">Aucun projet officiel pour le moment.</p>
+                                </div>
+                                <span class="category-arrow" aria-hidden="true">▾</span>
                             </div>
-                        </div>
-                    </a>
+                        </summary>
+                    </details>
 
-                    <!-- 1-2-Poo -->
-                    <a href="projet-1-2-Poo.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">1-2-Poo</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
+                    <details class="project-card" style="grid-column: 1 / -1;">
+                        <summary class="project-card-content" style="list-style: none;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
+                                <div>
+                                    <h3 class="project-card-title">Projet perso</h3>
+                                    <p class="project-card-description">Aucun projet personnel pour le moment.</p>
+                                </div>
+                                <span class="category-arrow" aria-hidden="true">▸</span>
                             </div>
-                        </div>
-                    </a>
+                        </summary>
+                    </details>
 
-                    <!-- 1-3-AdvancedProg -->
-                    <a href="projet-1-3-AdvancedProg.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">1-3-AdvancedProg</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
+                    <details class="project-card" style="grid-column: 1 / -1;">
+                        <summary class="project-card-content" style="list-style: none;">
+                            <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
+                                <div>
+                                    <h3 class="project-card-title">Projet scolaire</h3>
+                                    <p class="project-card-description">Projets réalisés à l’école supérieure.</p>
+                                </div>
+                                <span class="category-arrow" aria-hidden="true">▾</span>
                             </div>
+                        </summary>
+                        <div class="project-card-content" style="display: flex; flex-direction: column; gap: 0.9rem;">
+                            <a href="projet-1-1-ImperativeProg.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Minesweeper en console (C)<br><small>Implémentation d’un démineur en console.</small><br><small>2024</small></a>
+                            <a href="projet-1-2-Poo.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">POO en C++<br><small>Travail sur l’encapsulation et les classes.</small><br><small>2024</small></a>
+                            <a href="projet-1-3-AdvancedProg.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Programmation avancée<br><small>Concepts C++ avancés et programmation générique.</small><br><small>2024</small></a>
+                            <a href="projet-1-4-Shoot'emUp.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Shoot'emUp<br><small>Prototype d’action en vue de dessus.</small><br><small>2024</small></a>
+                            <a href="projet-1-5-Encapsulation.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Encapsulation<br><small>Gestion des données et protection des états internes.</small><br><small>2024</small></a>
+                            <a href="projet-1-6-Template.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Templates C++<br><small>Programmation générique et réutilisation du code.</small><br><small>2024</small></a>
+                            <a href="projet-1-7-StateMachine.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Machine à états<br><small>Logique d’états pour le comportement d’un système.</small><br><small>2024</small></a>
+                            <a href="projet-1-8-2DPlateformer.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Plateformer 2D<br><small>Prototype 2D centré sur les collisions et les sauts.</small><br><small>2024</small></a>
+                            <a href="projet-2-1-Geometry.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Géométrie<br><small>Bases mathématiques pour le jeu vidéo et le graphisme.</small><br><small>2025</small></a>
+                            <a href="projet-2-2-Runner.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Runner<br><small>Jeu d’esquive et de progression axé sur les réflexes.</small><br><small>2025</small></a>
+                            <a href="projet-2-3-PathFinding.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Pathfinding<br><small>Recherche de chemin dans une grille.</small><br><small>2025</small></a>
+                            <a href="projet-2-4-ArenaShooter.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Arena Shooter<br><small>Action en arène avec gestion des ennemis.</small><br><small>2025</small></a>
+                            <a href="projet-2-5-Moteur.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Moteur de jeu<br><small>Moteur OpenGL avec architecture ECS.</small><br><small>2025</small></a>
+                            <a href="projet-2-6-Game.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">Game<br><small>Projet de jeu en cours de développement.</small><br><small>2025</small></a>
                         </div>
-                    </a>
-
-                    <!-- 1-4-Shoot'emUp -->
-                    <a href="projet-1-4-Shoot'emUp.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">1-4-Shoot'emUp</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 1-5-Encapsulation -->
-                    <a href="projet-1-5-Encapsulation.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">1-5-Encapsulation</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 1-6-Template -->
-                    <a href="projet-1-6-Template.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">1-6-Template</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 1-7-StateMachine -->
-                    <a href="projet-1-7-StateMachine.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">1-7-StateMachine</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 1-8-2DPlateformer -->
-                    <a href="projet-1-8-2DPlateformer.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">1-8-2DPlateformer</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 2-1-Geometry -->
-                    <a href="projet-2-1-Geometry.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">2-1-Geometry</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 2-2-Runner -->
-                    <a href="projet-2-2-Runner.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">2-2-Runner</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 2-3-PathFinding -->
-                    <a href="projet-2-3-PathFinding.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">2-3-PathFinding</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 2-4-ArenaShooter -->
-                    <a href="projet-2-4-ArenaShooter.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">2-4-ArenaShooter</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 2-5-Moteur -->
-                    <a href="projet-2-5-Moteur.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">2-5-Moteur</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- 2-6-Game -->
-                    <a href="projet-2-6-Game.html" class="project-card">
-                        <div class="project-card-image">
-                            <div class="image-placeholder bg-dark-accent"></div>
-                        </div>
-                        <div class="project-card-content">
-                            <h3 class="project-card-title">2-6-Game</h3>
-                            <p class="project-card-description">
-                                Description placeholder (I will fill later).
-                            </p>
-                            <div class="project-card-footer">
-                                <span class="project-link-text">Explore Project <span class="arrow-icon">&rarr;</span></span>
-                            </div>
-                        </div>
-                    </a>
+                    </details>
                 </div>
             </div>
-        </section>
-
-        <section id="wip" aria-labelledby="wip-titre">
-            <h2 id="wip-titre">Ce sur quoi je travaille actuellement</h2>
-            <ul>
-                <li>Apprentissage des pipelines de rendu graphique (Rendering pipelines)</li>
-                <li>Développement d'un petit moteur personnalisé</li>
-                <li>Exploration des systèmes et comportements d'Intelligence Artificielle</li>
-            </ul>
         </section>
     </main>
 
     <footer id="contact">
         <h2>Contact</h2>
         <address>
-            <p>Email: <a href="mailto:ton.email@example.com">ton.email@example.com</a></p>
+            <p>Email: <a href="mailto:Ballemandleung@gmail.com">ton.email@example.com</a></p>
             <p>GitHub: <a href="https://github.com/Bastien-Allemand" target="_blank" rel="noopener noreferrer">github.com/Bastien-Allemand</a></p>
-            <p>LinkedIn: <a href="https://linkedin.com/in/ton-profil" target="_blank" rel="noopener noreferrer">linkedin.com/in/ton-profil</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/bastienall/" target="_blank" rel="noopener noreferrer">linkedin.com/in/ton-profil</a></p>
         </address>
     </footer>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
-
-
-

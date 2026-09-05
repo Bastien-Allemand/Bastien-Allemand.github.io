@@ -105,6 +105,21 @@
     transition: color 0.2s ease;
 }
 
+.project-count {
+    display: inline-flex;
+    min-width: 1.65rem;
+    height: 1.65rem;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.45rem;
+    padding: 0 0.35rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 999px;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    vertical-align: middle;
+}
+
 .project-card:hover .project-card-title {
     color: var(--accent-color);
 }
@@ -412,7 +427,7 @@ details[open] > summary .category-arrow {
                         <summary class="project-card-content" style="list-style: none;">
                             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
                                 <div>
-                                    <h3 class="project-card-title">Projet officiel</h3>
+                                    <h3 class="project-card-title">Projet officiel <span class="project-count" aria-label="0 projet">0</span></h3>
                                     <p class="project-card-description">Aucun projet officiel pour le moment.</p>
                                 </div>
                                 <span class="category-arrow" aria-hidden="true">▾</span>
@@ -424,7 +439,7 @@ details[open] > summary .category-arrow {
                         <summary class="project-card-content" style="list-style: none;">
                             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
                                 <div>
-                                    <h3 class="project-card-title">Projet perso</h3>
+                                    <h3 class="project-card-title">Projet perso <span class="project-count" aria-label="1 projet">1</span></h3>
                                     <p class="project-card-description">Projet personnel consacré à l’analyse de fichiers TrueType.</p>
                                 </div>
                                 <span class="category-arrow" aria-hidden="true">▸</span>
@@ -439,7 +454,7 @@ details[open] > summary .category-arrow {
                         <summary class="project-card-content" style="list-style: none;">
                             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
                                 <div>
-                                    <h3 class="project-card-title">Projet scolaire</h3>
+                                    <h3 class="project-card-title">Projet scolaire <span class="project-count" aria-label="14 projets">14</span></h3>
                                     <p class="project-card-description">Projets réalisés à l’école supérieure.</p>
                                 </div>
                                 <span class="category-arrow" aria-hidden="true">▾</span>

@@ -96,6 +96,26 @@ a:hover{color:color-mix(in srgb, var(--accent) 70%, white)}
     color: #ffffff;
 }
 
+.language-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1300;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    background: #238636;
+    color: #ffffff;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.language-toggle:hover {
+    background: #2ea043;
+}
+
 /* ---------------------------------------------
    Hero / Header
 ----------------------------------------------*/

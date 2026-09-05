@@ -141,6 +141,88 @@
     transform: translateX(6px);
 }
 
+/* Parcours scolaire */
+.timeline {
+    position: fixed;
+    top: 7rem;
+    right: 1.5rem;
+    z-index: 1000;
+    width: 245px;
+    padding: 1rem 1rem 1rem 1.25rem;
+    background: rgba(22, 27, 34, 0.94);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.timeline-title {
+    margin: 0 0 1rem;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.timeline-list {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.timeline-list::before {
+    position: absolute;
+    top: 0.45rem;
+    bottom: 0.45rem;
+    left: 0.3rem;
+    width: 2px;
+    background: var(--accent-color);
+    content: "";
+    opacity: 0.65;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+.timeline-item::before {
+    position: absolute;
+    top: 0.35rem;
+    left: 0;
+    width: 0.65rem;
+    height: 0.65rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    background: var(--bg-card);
+    content: "";
+}
+
+.timeline-date {
+    display: block;
+    color: var(--accent-color);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.timeline-school {
+    display: block;
+    margin-top: 0.15rem;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    line-height: 1.35;
+}
+
+@media (max-width: 1300px) {
+    .timeline {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: min(100% - 2rem, 1100px);
+        margin: 1.5rem auto 0;
+    }
+}
+
 /* Sidebar styles */
 .sidebar-toggle-checkbox {
     position: fixed;
@@ -175,10 +257,10 @@
     color: #fff;
     border: none;
     border-radius: 10px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     cursor: pointer;
     z-index: 1300;
-    width: 48px;
+    width: 76px;
     height: 48px;
     display: flex;
     align-items: center;
@@ -260,7 +342,7 @@ details[open] > summary .category-arrow {
         </nav>
     </div>
     <!-- Sidebar toggle button, toujours visible à gauche, EN DEHORS de la sidebar -->
-    <label id="sidebarToggle" class="sidebar-toggle" for="sidebarToggleCheckbox" aria-label="Ouvrir le sommaire" aria-controls="sidebar">&#9776;</label>
+    <label id="sidebarToggle" class="sidebar-toggle" for="sidebarToggleCheckbox" aria-label="Ouvrir l’index" aria-controls="sidebar">Index</label>
     <!-- Le reste du contenu (header, main, etc.) -->
     <header>
         <nav class="navbar" aria-label="Navigation principale">
@@ -276,6 +358,28 @@ details[open] > summary .category-arrow {
     </header>
 
     <main>
+        <aside class="timeline" aria-labelledby="timeline-title">
+            <h2 id="timeline-title" class="timeline-title">Mon parcours</h2>
+            <ol class="timeline-list">
+                <li class="timeline-item">
+                    <span class="timeline-date">2023 - 2024</span>
+                    <span class="timeline-school">Baccalauréat à La Providence, Fécamp</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2024 - 2025</span>
+                    <span class="timeline-school">1re année de programmation à Gaming Campus</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2025 - 2026</span>
+                    <span class="timeline-school">2e année de programmation à Gaming Campus</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2026 - 2027</span>
+                    <span class="timeline-school">Licence informatique, option math-info, à l’Université de Bordeaux</span>
+                </li>
+            </ol>
+        </aside>
+
         <section id="a-propos" aria-labelledby="a-propos-titre">
             <h2 id="a-propos-titre">À propos de moi</h2>
             <p>
@@ -321,13 +425,14 @@ details[open] > summary .category-arrow {
                             <div style="display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 1rem;">
                                 <div>
                                     <h3 class="project-card-title">Projet perso</h3>
-                                    <p class="project-card-description">Aucun projet personnel pour le moment.</p>
+                                    <p class="project-card-description">Projet personnel consacré à l’analyse de fichiers TrueType.</p>
                                 </div>
                                 <span class="category-arrow" aria-hidden="true">▸</span>
                             </div>
                         </summary>
                         <div class="project-card-content" style="display: flex; flex-direction: column; gap: 0.9rem;">
                             <a href="Projects/projet-ttf-parser.html" style="display:block; padding:0.8rem 1rem; border:1px solid #58a6ff; border-radius:999px; color:inherit; text-decoration:none; background:rgba(88,166,255,0.06);">TTF Parser<br><small>Analyseur de fichiers TTF pour l'extraction de glyphes.</small><br><small>2024-25</small></a>
+                        </div>
                     </details>
 
                     <details class="project-card" style="grid-column: 1 / -1;">

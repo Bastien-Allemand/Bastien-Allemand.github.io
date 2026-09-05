@@ -6,17 +6,11 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <ul>
-            <li><a href="../index.html#a-propos">À propos de moi</a></li>
-            <li><a href="../index.html#cv">CV</a></li>
-            <li><a href="../index.html#projets">Projets réalisés</a></li>
-        </ul>
-    </nav>
+
 
     <header class="hero">
-        <h1>Programmation avancée</h1>
-        <p>Travail autour de concepts C++ plus poussés pour renforcer ma maîtrise du langage.</p>
+        <h1>Cryptage d’image</h1>
+        <p>Application Windows permettant de cacher puis de retrouver un caractère dans une image.</p>
     </header>
 
     <section class="project-details">
@@ -25,22 +19,30 @@
         </div>
         
         <h2>Introduction</h2>
-        <p>Ce projet rassemble plusieurs exercices et mises en pratique autour des concepts avancés du langage C++.</p>
+        <p>Application Windows consacrée à la dissimulation et à la récupération d’un caractère dans une image.</p>
 
         <h2>Contenu</h2>
         <ul>
-            <li>Utilisation de la STL</li>
-            <li>Découverte de patterns de conception</li>
-            <li>Programmation générique avec les templates</li>
-            <li>Approche plus rigoureuse de l’organisation du code</li>
+            <li>Chargement d’une image avec GDI+</li>
+            <li>Écriture d’un caractère dans les bits de poids faible du canal bleu</li>
+            <li>Lecture des 8 premiers pixels pour reconstruire le caractère</li>
+            <li>Enregistrement de l’image modifiée au format PNG</li>
         </ul>
 
         <h2>Compétences</h2>
         <ul>
-            <li>C++ avancé</li>
-            <li>STL</li>
-            <li>Templates</li>
-            <li>Architecture logicielle</li>
+            <li>C++ sous Windows</li>
+            <li>GDI+ et manipulation d’images</li>
+            <li>Opérations bit à bit</li>
+            <li>Gestion des codecs et des fichiers PNG</li>
+        </ul>
+
+        <h2>Détails</h2>
+        <ul>
+            <li>Application Windows utilisant C++ et GDI+.</li>
+            <li>Chiffrement d’un caractère dans les bits de poids faible du canal bleu.</li>
+            <li>Utilisation des 8 premiers pixels de l’image pour stocker le caractère.</li>
+            <li>Export de l’image modifiée au format PNG et déchiffrement par lecture des pixels.</li>
         </ul>
 
         <h2>Durée</h2>

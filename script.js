@@ -53,28 +53,28 @@ const projectTranslations = {
         intro: 'A 2D platform game developed with LightEngine, focused on movement, collisions and enemy behaviours.',
         content: ['Character movement and jumping', 'Collision and resource management', 'Enemy and boss actions', 'Organisation of a playable 2D level'],
         skills: ['C++ programming', '2D physics and collisions', 'SFML', 'Game behaviour design'],
-        details: ['LightEngine used to build a 2D platform game.', 'Character, enemy and boss action management.', 'Resource, level and collision organisation.', 'C++ project built with SFML.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
+        details: ['LightEngine used to build a 2D platform game.', 'Character, enemy and boss action management.', 'Resource, level and collision organisation.', 'C++ project built with SFML.'], duration: '3 weeks - 1 week of theory and 2 weeks of practice.', team: 'Individual project.'
     },
     'projet-2-1-Geometry.html': {
         title: 'Geometry', hero: 'A simple rendering library for exploring geometry, transformations and lighting in 2D and 3D scenes.',
         intro: 'A simple rendering library for exploring geometry, transformations and lighting in 2D and 3D scenes.',
         content: ['2D and 3D geometric shape rendering', 'Transformation, camera and lighting management', 'Shadow calculation with a Shadow Map', 'Window and user input management'],
         skills: ['C++ programming', 'Geometry and 3D transformations', 'Graphics rendering', 'Camera and lighting management'],
-        details: ['Simple 2D and 3D rendering library.', 'Geometry, transformations, camera and lighting.', 'Shadow Map rendering.', 'Renderer, window and input system organisation.'], duration: 'Not specified.', team: 'Individual project.'
+        details: ['Simple 2D and 3D rendering library.', 'Geometry, transformations, camera and lighting.', 'Shadow Map rendering.', 'Renderer, window and input system organisation.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
     },
     'projet-2-2-Runner.html': {
         title: 'Runner', hero: 'A rendering and gameplay project built on the GC-simple-render library.',
         intro: 'A rendering and gameplay project built on GC-simple-render, with a foundation for a runner game.',
         content: ['Game scene and resource management', 'Camera, geometry, textures and lighting', 'Separation between renderer and sandbox', 'Gameplay foundation focused on movement and dodging'],
         skills: ['C++ programming', '2D/3D rendering engine use', 'Camera and resource management', 'Game mechanic design'],
-        details: ['Project using the GC-simple-render library.', 'Camera, geometry, lighting and texture management.', 'Code organised between renderer and game sandbox.', 'AssetManager for resources.'], duration: 'Not specified.', team: 'Individual project.'
+        details: ['Project using the GC-simple-render library.', 'Camera, geometry, lighting and texture management.', 'Code organised between renderer and game sandbox.', 'AssetManager for resources.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
     },
     'projet-2-3-PathFinding.html': {
         title: 'Pathfinding', hero: 'A C++ grid pathfinding project integrated with a rendering base to visualise the result.',
         intro: 'A C++ grid pathfinding project integrated with a rendering base to visualise the result.',
         content: ['Navigable grid representation', 'Path calculation between a start and destination', 'Obstacle handling', 'Path display and documented controls'],
         skills: ['Pathfinding algorithms', 'Grid modelling', 'C++ programming', 'Rendering engine integration'],
-        details: ['C++ project built on GC-simple-render.', 'Grid display and calculated path visualisation.', 'Obstacles considered during pathfinding.', 'Keyboard controls documented in READCONTROLS.txt.'], duration: 'Not specified.', team: 'Individual project.'
+        details: ['C++ project built on GC-simple-render.', 'Grid display and calculated path visualisation.', 'Obstacles considered during pathfinding.', 'Keyboard controls documented in READCONTROLS.txt.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
     },
     'projet-2-4-ArenaShooter.html': {
         title: 'Arena Shooter', hero: 'An arena action game with dynamic combat and enemy management.',
@@ -106,29 +106,41 @@ const projectTranslations = {
     }
 };
 
+projectTranslations['projet-2-5-Reseau.html'] = projectTranslations['projet-2-5-Moteur.html'];
+
 function setText(element, value) {
     if (element && value !== undefined) element.textContent = value;
 }
 
 function translateList(element, values) {
     if (!element || !values) return;
-    Array.from(element.children).forEach((item, index) => setText(item, values[index] || ''));
+    Array.from(element.children).forEach((item, index) => {
+        const label = item.querySelector('.skill-label');
+        setText(label || item, values[index] || '');
+    });
 }
 
 function translateProject(lang) {
     const key = window.location.pathname.split('/').pop();
     const data = projectTranslations[key];
-    if (!data) return;
-
     document.documentElement.lang = lang;
-    if (lang === 'en') document.title = `${data.title} - Bastien Allemand`;
     const back = document.querySelector('.bouton-cv');
     if (back) {
         back.textContent = lang === 'en' ? 'Back to Portfolio' : 'Retour au Portfolio';
         back.setAttribute('aria-label', lang === 'en' ? 'Back to Portfolio' : 'Retour au Portfolio');
+        const backUrl = new URL(back.href, window.location.href);
+        if (lang === 'fr') backUrl.searchParams.set('lang', 'fr');
+        else backUrl.searchParams.delete('lang');
+        back.href = backUrl.href;
     }
+    if (!data) return;
+
+    if (lang === 'en') document.title = `${data.title} - Bastien Allemand`;
     const headings = Array.from(document.querySelectorAll('.project-details > h2'));
-    const sections = ['intro', 'content', 'skills', 'details', 'media', 'duration', 'team'];
+    const hasMedia = Boolean(data.media || document.querySelector('.project-gallery, .project-video'));
+    const sections = hasMedia
+        ? ['intro', 'content', 'skills', 'details', 'media', 'duration', 'team']
+        : ['intro', 'content', 'skills', 'details', 'duration', 'team'];
     setText(document.querySelector('.hero h1'), lang === 'en' ? data.title : document.querySelector('.hero h1')?.textContent);
     setText(document.querySelector('.hero p'), lang === 'en' ? data.hero : document.querySelector('.hero p')?.textContent);
 
@@ -147,6 +159,7 @@ function translateProject(lang) {
             else if (section === 'skills') { setText(heading, 'Skills'); translateList(next, data.skills); }
             else if (section === 'details') { setText(heading, 'Details'); translateList(next, data.details); }
         });
+
         const videoFallback = document.querySelector('.project-video');
         if (videoFallback && videoFallback.lastChild) videoFallback.lastChild.textContent = 'Your browser does not support video playback.';
     }
@@ -166,20 +179,62 @@ function translateIndex(lang) {
     setText(document.querySelector('#cv h2'), english ? 'Skills' : 'Compétences');
     if (english) translateList(document.querySelector('.skills-list'), ['C', 'C++ (STL / OOP)', 'C#', 'DirectX12', 'Unity', 'Git / GitHub', 'Game development (ECS architecture, physics, shaders)', '3D mathematics']);
     setText(document.querySelector('#timeline-title'), english ? 'My journey' : 'Mon parcours');
-    if (english) translateList(document.querySelector('.timeline-list'), ['2023 - 2024Baccalaureate at La Providence, Fécamp', '2024 - 2025First year of programming at Gaming Campus', '2025 - 2026Second year of programming at Gaming Campus', '2026 - 2027Computer science degree, maths-info option, at the University of Bordeaux']);
+    const timelineItems = [
+        ['2023 - 2024', 'Baccalaureate at La Providence, Fécamp', 'Baccalauréat à La Providence, Fécamp'],
+        ['2024 - 2025', 'First year of programming at Gaming Campus', '1re année de programmation à Gaming Campus'],
+        ['2025 - 2026', 'Second year of programming at Gaming Campus', '2e année de programmation à Gaming Campus'],
+        ['2026 - 2027', 'Computer science degree, maths-info option, at the University of Bordeaux', 'Licence informatique, option math-info, à l’Université de Bordeaux']
+    ];
+    document.querySelectorAll('.timeline-item').forEach((item, index) => {
+        const timeline = timelineItems[index];
+        if (!timeline) return;
+        setText(item.querySelector('.timeline-date'), timeline[0]);
+        setText(item.querySelector('.timeline-school'), english ? timeline[1] : timeline[2]);
+    });
     const cards = document.querySelectorAll('#projets details');
-    const cardTitles = english ? ['Official projects', 'Personal project', 'School projects'] : ['Projet officiel', 'Projet perso', 'Projet scolaire'];
-    const cardDescriptions = english ? ['No official projects yet.', 'Personal project focused on TrueType file analysis.', 'Projects completed at higher education school.'] : ['Aucun projet officiel pour le moment.', 'Projet personnel consacré à l’analyse de fichiers TrueType.', 'Projets réalisés à l’école supérieure.'];
+    const cardTitles = english ? ['Personal project', 'School projects'] : ['Projet perso', 'Projet scolaire'];
+    const cardDescriptions = english ? ['Personal project focused on TrueType file analysis.', 'Projects completed at higher education school.'] : ['Projet personnel des projets realiser seul ou en petite équipe durant des game jams ou des projet personnels.', 'Projets réalisés à l’école supérieure.'];
     cards.forEach((card, index) => {
         const title = card.querySelector('h3');
         if (title && english && title.firstChild) title.firstChild.textContent = `${cardTitles[index]} `;
         else if (title && !english && title.firstChild) title.firstChild.textContent = `${cardTitles[index]} `;
         setText(card.querySelector('.project-card-description'), cardDescriptions[index]);
     });
+    const projectLinksPanel = document.querySelector('#project-links');
+    if (projectLinksPanel) {
+        setText(projectLinksPanel.querySelector('strong'), english ? 'Find my projects:' : 'Retrouvez mes projets :');
+    }
     if (english) {
-        const projectLinks = document.querySelectorAll('#projets details a');
-        const descriptions = ['TTF Parser', 'Console Minesweeper (C++)', 'C++ RPG', 'Image encryption', 'Shoot-em-up', 'Encapsulation', 'Break Brick', 'State machine', '2D platformer', 'Geometry', 'Runner', 'Pathfinding', 'Arena Shooter', 'Game communication', '3D horror game'];
-        projectLinks.forEach((link, index) => { const year = link.querySelector('small:last-child')?.textContent || ''; setText(link, `${descriptions[index]} - ${year}`); });
+        const projectCardLinks = document.querySelectorAll('#projets details a');
+        const titles = ['TTF Parser', '3D Horror Game', 'Game Communication', 'Arena Shooter', 'Pathfinding', 'Runner', 'Geometry', '2D Platformer', 'State Machine', 'Break Brick', 'Encapsulation', 'Shoot-em-up', 'Image Encryption', 'Console RPG', 'Console Minesweeper (C++)'];
+        const descriptions = ['Binary TrueType file parsing and glyph extraction.', 'Game project currently in development.', 'OpenGL game engine with ECS architecture.', 'Arena action game with enemy management.', 'Grid-based pathfinding project.', 'Reflex-based dodging and progression game.', 'Mathematical foundations for games and graphics.', '2D prototype focused on collisions and jumping.', 'State logic for system behaviour.', 'Generic programming and code reuse.', 'Data management and protection of internal states.', 'Top-down action prototype.', 'Advanced C++ concepts and generic programming.', 'Work on encapsulation and classes.', 'Console Minesweeper implementation.'];
+        const metadata = [
+            ['Not specified', 'Individual project', '2024-25'],
+            ['1 month', 'Three-person development project', '2025-26'],
+            ['1 month', 'Project team', '2025-26'],
+            ['4 weeks', '9-person project', '2025-26'],
+            ['2 weeks - 1 week of theory and 1 week of practice', 'Individual project', '2025-26'],
+            ['2 weeks - 1 week of theory and 1 week of practice', 'Individual project', '2025-26'],
+            ['2 weeks - 1 week of theory and 1 week of practice', 'Individual project', '2025-26'],
+            ['3 weeks - 1 week of theory and 2 weeks of practice', 'Individual project', '2024-25'],
+            ['2 weeks', 'Pair project', '2024-25'],
+            ['2 weeks', 'Pair project', '2024-25'],
+            ['2 weeks', 'Pair project', '2024-25'],
+            ['2 weeks', 'Pair project', '2024-25'],
+            ['2 weeks', 'Individual project', '2024-25'],
+            ['2 weeks', 'Individual project', '2024-25'],
+            ['2 weeks', 'Individual project', '2024-25']
+        ];
+        projectCardLinks.forEach((link, index) => {
+            setText(link.querySelector('.project-title'), titles[index]);
+            setText(link.querySelector('.project-short'), descriptions[index]);
+            const fields = link.querySelectorAll('.project-field');
+            const labels = ['Description:', 'Duration:', 'Group:', 'Year:'];
+            setText(fields[0]?.querySelector('.project-label'), labels[0]);
+            setText(fields[1], `${labels[1]} ${metadata[index][0]}`);
+            setText(fields[2], `${labels[2]} ${metadata[index][1]}`);
+            setText(fields[3], `${labels[3]} ${metadata[index][2]}`);
+        });
         setText(document.querySelector('#contact h2'), 'Contact');
     }
 }
@@ -189,9 +244,26 @@ function applyLanguage(lang) {
     if (isIndex) translateIndex(lang); else translateProject(lang);
     const button = document.querySelector('.language-toggle');
     if (button) {
-        button.textContent = lang === 'en' ? 'Français' : 'English';
-        button.setAttribute('aria-label', lang === 'en' ? 'Switch to French' : 'Switch to English');
+        button.textContent = lang === 'en' ? 'English' : 'Français';
+        button.setAttribute('aria-label', lang === 'en' ? 'Switch to English' : 'Switch to French');
     }
+}
+
+function getLanguage() {
+    const languageFromUrl = new URLSearchParams(window.location.search).get('lang');
+    if (languageFromUrl === 'fr' || languageFromUrl === 'en') return languageFromUrl;
+    const savedLanguage = localStorage.getItem('portfolio-language');
+    return savedLanguage === 'fr' || savedLanguage === 'en' ? savedLanguage : 'en';
+}
+
+function preserveLanguageInLinks(lang) {
+    document.querySelectorAll('a[href$=".html"]').forEach(link => {
+        const url = new URL(link.href, window.location.href);
+        if (url.origin !== window.location.origin) return;
+        if (lang === 'fr') url.searchParams.set('lang', 'fr');
+        else url.searchParams.delete('lang');
+        link.href = url.href;
+    });
 }
 
 function initLanguage() {
@@ -199,13 +271,24 @@ function initLanguage() {
     button.className = 'language-toggle';
     button.type = 'button';
     document.body.appendChild(button);
-    const savedLanguage = localStorage.getItem('portfolio-language') || 'fr';
+    const savedLanguage = getLanguage();
+    localStorage.setItem('portfolio-language', savedLanguage);
     button.addEventListener('click', () => {
-        const language = localStorage.getItem('portfolio-language') === 'en' ? 'fr' : 'en';
+        const language = getLanguage() === 'en' ? 'fr' : 'en';
         localStorage.setItem('portfolio-language', language);
-        window.location.reload();
+        sessionStorage.setItem('portfolio-scroll-position', String(window.scrollY));
+        const url = new URL(window.location.href);
+        if (language === 'fr') url.searchParams.set('lang', 'fr');
+        else url.searchParams.delete('lang');
+        window.location.href = url.href;
     });
     applyLanguage(savedLanguage);
+    preserveLanguageInLinks(savedLanguage);
+    const scrollPosition = sessionStorage.getItem('portfolio-scroll-position');
+    if (scrollPosition !== null) {
+        sessionStorage.removeItem('portfolio-scroll-position');
+        requestAnimationFrame(() => window.scrollTo(0, Number(scrollPosition)));
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

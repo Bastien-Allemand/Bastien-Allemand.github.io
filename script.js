@@ -16,9 +16,9 @@ const projectTranslations = {
     'projet-1-3-AdvancedProg.html': {
         title: 'Image Encryption', hero: 'A Windows application for hiding and retrieving a character inside an image.',
         intro: 'A Windows application dedicated to hiding and recovering a character in an image.',
-        content: ['Loading an image with GDI+', 'Writing a character into the blue channel least significant bits', 'Reading the first 8 pixels to rebuild the character', 'Saving the modified image as PNG'],
-        skills: ['C++ on Windows', 'GDI+ and image manipulation', 'Bitwise operations', 'Codec and PNG file handling'],
-        details: ['Windows application using C++ and GDI+.', 'Character encryption in the blue channel least significant bits.', 'The first 8 pixels store the character.', 'PNG export and pixel-based decryption.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
+        content: ['Loading an image with GDI+', 'Writing a character into the least significant bits of the blue channel', 'Reading the first 8 pixels to rebuild the character', 'Saving the modified image as PNG'],
+        skills: ['C++ on Windows', 'GDI+ and image manipulation', 'Bitwise operations', 'PNG file handling'],
+        details: ['Windows application using C++ and GDI+.', 'Character hiding in the least significant bits of the blue channel.', 'The first 8 pixels store the character.', 'PNG export and pixel-based character extraction.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
     },
     'projet-1-4-Shoot\'emUp.html': {
         title: 'Shoot-em-up', hero: 'A top-down action prototype focused on movement, shooting and enemies.',
@@ -60,7 +60,7 @@ const projectTranslations = {
         intro: 'A simple rendering library for exploring geometry, transformations and lighting in 2D and 3D scenes.',
         content: ['2D and 3D geometric shape rendering', 'Transformation, camera and lighting management', 'Shadow calculation with a Shadow Map', 'Window and user input management'],
         skills: ['C++ programming', 'Geometry and 3D transformations', 'Graphics rendering', 'Camera and lighting management'],
-        details: ['Simple 2D and 3D rendering library.', 'Geometry, transformations, camera and lighting.', 'Shadow Map rendering.', 'Renderer, window and input system organisation.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
+        details: ['Simple 2D and 3D rendering library.', 'Geometry, transformations, camera and lighting.', 'Shadow map rendering.', 'Rendering engine, window and input system organisation.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
     },
     'projet-2-2-Runner.html': {
         title: 'Runner', hero: 'A rendering and gameplay project built on the GC-simple-render library.',
@@ -100,7 +100,7 @@ const projectTranslations = {
     'projet-2-7-Game.html': {
         title: '3D Horror Game', hero: 'A C++ game project exploring a 3D prototype and future gameplay mechanics.',
         intro: 'A C++ game project designed to experiment with a 3D prototype and future gameplay mechanics.',
-        content: ['Code base organised into resources, configuration and source folders', 'Gameplay mechanics prototype', 'Structure prepared for future gameplay systems', 'Ongoing 3D game development'],
+        content: ['Codebase organised into resources, configuration and source folders', 'Gameplay mechanics prototype', 'Structure prepared for future gameplay systems', 'Ongoing 3D game development'],
         skills: ['Gameplay design', 'C++ programming', 'HLSL shader basics', 'Game project organisation'],
         details: ['C++ game project with bin, config, res and src folders.', 'Prototype for gameplay experimentation.', 'Ongoing project prepared for future systems.'], duration: '1 month.', team: 'Three-person development project.'
     },
@@ -188,7 +188,7 @@ function translateIndex(lang) {
         ['2023 - 2024', 'Baccalaureate at La Providence, Fécamp', 'Baccalauréat à La Providence, Fécamp'],
         ['2024 - 2025', 'First year of programming at Gaming Campus', '1re année de programmation à Gaming Campus'],
         ['2025 - 2026', 'Second year of programming at Gaming Campus', '2e année de programmation à Gaming Campus'],
-        ['2026 - 2027', 'Computer science degree, maths-info option, at the University of Bordeaux', 'Licence informatique, option math-info, à l’Université de Bordeaux']
+        ['2026 - 2027', 'Computer science degree, mathematics and computer science track, at the University of Bordeaux', 'Licence informatique, option math-info, à l’Université de Bordeaux']
     ];
     document.querySelectorAll('.timeline-item').forEach((item, index) => {
         const timeline = timelineItems[index];
@@ -197,8 +197,8 @@ function translateIndex(lang) {
         setText(item.querySelector('.timeline-school'), english ? timeline[1] : timeline[2]);
     });
     const cards = document.querySelectorAll('#projets details');
-    const cardTitles = english ? ['Personal project', 'School projects'] : ['Projet perso', 'Projet scolaire'];
-    const cardDescriptions = english ? ['Personal project focused on TrueType file analysis.', 'Projects completed at higher education school.'] : ['Projet personnel des projets realiser seul ou en petite équipe durant des game jams ou des projet personnels.', 'Projets réalisés à l’école supérieure.'];
+    const cardTitles = english ? ['Personal projects', 'School projects'] : ['Projets personnels', 'Projets scolaires'];
+    const cardDescriptions = english ? ['Personal projects completed alone or in small teams, including game jams.', 'Projects completed at a higher-education institution within the allotted time and kept unchanged to show progression over time.'] : ['Projets personnels réalisés seul ou en petite équipe, notamment lors de game jams.', 'Projets réalisés dans un établissement d’enseignement supérieur dans les temps impartis et conservés dans leur état d’origine pour montrer l’évolution et la progression.'];
     cards.forEach((card, index) => {
         const title = card.querySelector('h3');
         if (title && english && title.firstChild) title.firstChild.textContent = `${cardTitles[index]} `;
@@ -218,8 +218,8 @@ function translateIndex(lang) {
             ['Not specified', 'Individual project', 'Not specified'],
             ['Not specified', 'Individual project', 'Not specified'],
             ['1 month', 'Three-person development project', '2025-26'],
-            ['1 month', 'Project team', '2025-26'],
-            ['1 month', 'Project team', '2025-26'],
+            ['1 month', 'Four-person project', '2025-26'],
+            ['1 month', 'Pair project', '2025-26'],
             ['4 weeks', 'Five-person project', '2025-26'],
             ['2 weeks - 1 week of theory and 1 week of practice', 'Pair project', '2025-26'],
             ['2 weeks - 1 week of theory and 1 week of practice', 'Pair project', '2025-26'],

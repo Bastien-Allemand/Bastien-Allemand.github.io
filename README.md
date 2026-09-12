@@ -1,8 +1,8 @@
 # Bastien-Allemand.github.io
-Portofolio
+Portfolio
 
-image pour les projets 
+Images pour les projets
 
-projet officiel en projet professionnel 
+Transformer le projet officiel en projet professionnel
 
-mettre dans 2 categorie different itch et reseau de contact
+Mettre dans deux catégories différentes : itch.io et réseaux de contact

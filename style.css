@@ -162,6 +162,10 @@ section h2{font-size:var(--fs-h2);padding-bottom:.6rem;margin-bottom:var(--space
 #contact h2{margin-bottom:var(--space-3);border-bottom:none}
 #contact p{margin-bottom:var(--space-2);font-size:var(--fs-2)}
 #contact address{font-style:normal}
+.contact-links{display:flex;justify-content:center;gap:1.25rem;flex-wrap:wrap}
+.contact-link{display:inline-flex;align-items:center;gap:.5rem}
+.contact-icon{width:1.5rem;height:1.5rem;object-fit:contain;vertical-align:middle}
+.contact-link:hover .contact-icon{transform:translateY(-2px)}
 
 /* Animations + reveal on scroll */
 .reveal-item{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.9,.2,1),transform .7s cubic-bezier(.2,.9,.2,1)}

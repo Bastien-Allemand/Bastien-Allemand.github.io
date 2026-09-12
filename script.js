@@ -53,7 +53,7 @@ const projectTranslations = {
         intro: 'A 2D platform game developed with LightEngine, focused on movement, collisions and enemy behaviours.',
         content: ['Character movement and jumping', 'Collision and resource management', 'Enemy and boss actions', 'Organisation of a playable 2D level'],
         skills: ['C++ programming', '2D physics and collisions', 'SFML', 'Game behaviour design'],
-        details: ['LightEngine used to build a 2D platform game.', 'Character, enemy and boss action management.', 'Resource, level and collision organisation.', 'C++ project built with SFML.'], duration: '3 weeks - 1 week of theory and 2 weeks of practice.', team: 'Individual project.'
+        details: ['LightEngine used to build a 2D platform game.', 'Character, enemy and boss action management.', 'Resource, level and collision organisation.', 'C++ project built with SFML.'], duration: '3 weeks - 1 week of theory and 2 weeks of practice.', team: 'Nine-person project.'
     },
     'projet-2-1-Geometry.html': {
         title: 'Geometry', hero: 'A simple rendering library for exploring geometry, transformations and lighting in 2D and 3D scenes.',
@@ -67,30 +67,37 @@ const projectTranslations = {
         intro: 'A rendering and gameplay project built on GC-simple-render, with a foundation for a runner game.',
         content: ['Game scene and resource management', 'Camera, geometry, textures and lighting', 'Separation between renderer and sandbox', 'Gameplay foundation focused on movement and dodging'],
         skills: ['C++ programming', '2D/3D rendering engine use', 'Camera and resource management', 'Game mechanic design'],
-        details: ['Project using the GC-simple-render library.', 'Camera, geometry, lighting and texture management.', 'Code organised between renderer and game sandbox.', 'AssetManager for resources.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
+        details: ['Project using the GC-simple-render library.', 'Camera, geometry, lighting and texture management.', 'Code organised between renderer and game sandbox.', 'AssetManager for resources.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Pair project.'
     },
     'projet-2-3-PathFinding.html': {
         title: 'Pathfinding', hero: 'A C++ grid pathfinding project integrated with a rendering base to visualise the result.',
         intro: 'A C++ grid pathfinding project integrated with a rendering base to visualise the result.',
         content: ['Navigable grid representation', 'Path calculation between a start and destination', 'Obstacle handling', 'Path display and documented controls'],
         skills: ['Pathfinding algorithms', 'Grid modelling', 'C++ programming', 'Rendering engine integration'],
-        details: ['C++ project built on GC-simple-render.', 'Grid display and calculated path visualisation.', 'Obstacles considered during pathfinding.', 'Keyboard controls documented in READCONTROLS.txt.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Individual project.'
+        details: ['C++ project built on GC-simple-render.', 'Grid display and calculated path visualisation.', 'Obstacles considered during pathfinding.', 'Keyboard controls documented in READCONTROLS.txt.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Pair project.'
     },
     'projet-2-4-ArenaShooter.html': {
         title: 'Arena Shooter', hero: 'An arena action game with dynamic combat and enemy management.',
         intro: 'A C++ arena action game with several enemy types, weapons and interactive elements.',
         content: ['Arena, door and elevator management', 'Regular enemies, bots and boss', 'Movement, shooting, projectiles and flamethrower', 'Interactive objects such as crates and consumables'],
         skills: ['C++ programming', 'Action gameplay design', 'Enemy and simple AI management', 'Game architecture organisation'],
-        details: ['C++ arena action game.', 'Arena, door, elevator and crate management.', 'Several enemy types, including bots and a boss.', 'Projectile, flamethrower and interactive object management.'], duration: '4 weeks - 1 week of theory and 3 weeks of practice.', team: '9-person project (3 developers, 3 artists and 3 business team members).', media: 'Media'
+        details: ['C++ arena action game.', 'Arena, door, elevator and crate management.', 'Several enemy types, including bots and a boss.', 'Projectile, flamethrower and interactive object management.'], duration: '4 weeks - 1 week of theory and 3 weeks of practice.', team: 'Five-person project.', media: 'Media'
     },
-    'projet-2-5-Moteur.html': {
+    'projet-2-6-Moteur.html': {
+        title: 'Game Engine', hero: 'An OpenGL game engine in C++ organised around an ECS architecture.',
+        intro: 'A project focused on building a reusable OpenGL game engine with an Entity Component System architecture.',
+        content: ['ECS architecture for entities and components', 'OpenGL rendering and graphics resource management', 'Scene, transform and camera management', 'Reusable technical foundation for games'],
+        skills: ['C++ programming', 'OpenGL', 'Entity Component System architecture', '2D and 3D rendering', 'Game engine organisation'],
+        details: ['C++ game engine based on an ECS architecture.', 'Entity, component and system management.', 'OpenGL rendering and graphics resource integration.', 'Technical foundation for future prototypes.'], duration: '1 month.', team: 'Four-person project.'
+    },
+    'projet-2-5-Reseau.html': {
         title: 'Game Communication', hero: 'A C++ project focused on communication between a client and game entities through network messages.',
         intro: 'A project exploring game client organisation and message flow between different systems.',
         content: ['Local and network game entities', 'Connection, movement, shooting and damage messages', 'Player, model, coin and status management', 'Communication protocol documentation and diagrams'],
         skills: ['C++ programming', 'Message protocol design', 'Client and entity architecture', 'Network communication'],
-        details: ['Client project with several network entities.', 'Messages for connection, movement, shooting, damage and objects.', 'Player, network entity, model and coin management.', 'Protocol design files and diagrams.'], duration: '1 month.', team: 'Project team.'
+        details: ['Client project with several network entities.', 'Messages for connection, movement, shooting, damage and objects.', 'Player, network entity, model and coin management.', 'Protocol design files and diagrams.'], duration: '1 month.', team: 'Pair project.'
     },
-    'projet-2-6-Game.html': {
+    'projet-2-7-Game.html': {
         title: '3D Horror Game', hero: 'A C++ game project exploring a 3D prototype and future gameplay mechanics.',
         intro: 'A C++ game project designed to experiment with a 3D prototype and future gameplay mechanics.',
         content: ['Code base organised into resources, configuration and source folders', 'Gameplay mechanics prototype', 'Structure prepared for future gameplay systems', 'Ongoing 3D game development'],
@@ -105,8 +112,6 @@ const projectTranslations = {
         details: ['TrueType font file analysis.', 'Glyph outline and associated data extraction.', 'Conversion of font data into triangulated geometry.', 'Binary data processing in C++ with CMake.'], duration: 'Not specified.', team: 'Individual project.'
     }
 };
-
-projectTranslations['projet-2-5-Reseau.html'] = projectTranslations['projet-2-5-Moteur.html'];
 
 function setText(element, value) {
     if (element && value !== undefined) element.textContent = value;
@@ -206,17 +211,20 @@ function translateIndex(lang) {
     }
     if (english) {
         const projectCardLinks = document.querySelectorAll('#projets details a');
-        const titles = ['TTF Parser', '3D Horror Game', 'Game Communication', 'Arena Shooter', 'Pathfinding', 'Runner', 'Geometry', '2D Platformer', 'State Machine', 'Break Brick', 'Encapsulation', 'Shoot-em-up', 'Image Encryption', 'Console RPG', 'Console Minesweeper (C++)'];
-        const descriptions = ['Binary TrueType file parsing and glyph extraction.', 'Game project currently in development.', 'OpenGL game engine with ECS architecture.', 'Arena action game with enemy management.', 'Grid-based pathfinding project.', 'Reflex-based dodging and progression game.', 'Mathematical foundations for games and graphics.', '2D prototype focused on collisions and jumping.', 'State logic for system behaviour.', 'Generic programming and code reuse.', 'Data management and protection of internal states.', 'Top-down action prototype.', 'Advanced C++ concepts and generic programming.', 'Work on encapsulation and classes.', 'Console Minesweeper implementation.'];
+        const titles = ['TTF Parser', 'Scary Clown Game', 'RNG Tower Defense', '3D Horror Game', 'Game Engine', 'Game Communication', 'Arena Shooter', 'Pathfinding', 'Runner', 'Geometry', '2D Platformer', 'State Machine', 'Break Brick', 'Encapsulation', 'Shoot-em-up', 'Image Encryption', 'Console RPG', 'Console Minesweeper (C++)'];
+        const descriptions = ['Binary TrueType file parsing and glyph extraction.', 'Game published on Itch.io.', 'Tower defense game published on Itch.io.', 'Game project currently in development.', 'OpenGL game engine with ECS architecture.', 'Communication between a game client and entities.', 'Arena action game with enemy management.', 'Grid-based pathfinding project.', 'Reflex-based dodging and progression game.', 'Mathematical foundations for games and graphics.', '2D prototype focused on collisions and jumping.', 'State logic for system behaviour.', 'Generic programming and code reuse.', 'Data management and protection of internal states.', 'Top-down action prototype.', 'Advanced C++ concepts and generic programming.', 'Work on encapsulation and classes.', 'Console Minesweeper implementation.'];
         const metadata = [
             ['Not specified', 'Individual project', '2024-25'],
+            ['Not specified', 'Individual project', 'Not specified'],
+            ['Not specified', 'Individual project', 'Not specified'],
             ['1 month', 'Three-person development project', '2025-26'],
             ['1 month', 'Project team', '2025-26'],
-            ['4 weeks', '9-person project', '2025-26'],
+            ['1 month', 'Project team', '2025-26'],
+            ['4 weeks', 'Five-person project', '2025-26'],
+            ['2 weeks - 1 week of theory and 1 week of practice', 'Pair project', '2025-26'],
+            ['2 weeks - 1 week of theory and 1 week of practice', 'Pair project', '2025-26'],
             ['2 weeks - 1 week of theory and 1 week of practice', 'Individual project', '2025-26'],
-            ['2 weeks - 1 week of theory and 1 week of practice', 'Individual project', '2025-26'],
-            ['2 weeks - 1 week of theory and 1 week of practice', 'Individual project', '2025-26'],
-            ['3 weeks - 1 week of theory and 2 weeks of practice', 'Individual project', '2024-25'],
+            ['3 weeks - 1 week of theory and 2 weeks of practice', 'Nine-person project', '2024-25'],
             ['2 weeks', 'Pair project', '2024-25'],
             ['2 weeks', 'Pair project', '2024-25'],
             ['2 weeks', 'Pair project', '2024-25'],

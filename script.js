@@ -48,7 +48,7 @@ const projectTranslations = {
         skills: ['Object-oriented C++ programming', 'Action and behaviour design', 'Game engine organisation', 'SFML'],
         details: ['LightEngine architecture based on actions and behaviour states.', 'Dedicated actions for enemies, the boss and movement.', 'SFML for window, resources and rendering.', 'Transitions controlling game behaviours.'], duration: '2 weeks - 1 week of theory and 1 week of practice.', team: 'Pair project.'
     },
-    'projet-1-8-2DPlateformer.html': {
+    'projet-1-9-2DPlateformer.html': {
         title: '2D Platformer', hero: 'A 2D platform game built with LightEngine, focused on movement, collisions and enemies.',
         intro: 'A 2D platform game developed with LightEngine, focused on movement, collisions and enemy behaviours.',
         content: ['Character movement and jumping', 'Collision and resource management', 'Enemy and boss actions', 'Organisation of a playable 2D level'],
